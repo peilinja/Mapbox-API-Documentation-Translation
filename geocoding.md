@@ -1,36 +1,27 @@
-## Geocoding
+## 地理编码
 
-The Mapbox Geocoding API does two things: forward geocoding and reverse geocoding.
+MAPBOX地理编码API做两件事：正向地理编码和反向地理编码。
+正向地理编码可以替您将位置文本转换为地理坐标，例如将“2 Lincoln Memorial Circle NW”转化为 “-77.050,38.889”.
+反向地理编码可以将地理坐标转换为位置名称，例如将“-77.050,38.889”转化为“2 Lincoln Memorial Circle NW”
+这些位置名称可以从特定地址到包含给定坐标的国家/地区。
+Swift和Objective-C对地理编码的支持由[MapboxGeocoder.swift]（https://github.com/mapbox/MapboxGeocoder.swift）库提供。
 
-Forward geocoding lets you convert location text into geographic
-coordinates, turning `2 Lincoln Memorial Circle NW` into `-77.050,38.889`.
+**约束和限制**
 
-Reverse geocoding turns geographic coordinates into place names,
-turning `-77.050, 38.889` into `2 Lincoln Memorial Circle NW`. These place names
-can vary from specific addresses to states and countries that contain
-the given coordinates.
+要访问地理编码API，需要一个访问令牌。速率的限制是根据每个帐户执行的，并随计划而异，详情如下:
 
-Swift and Objective-C support for Geocoding is provided by the [MapboxGeocoder.swift](https://github.com/mapbox/MapboxGeocoder.swift)
-library.
-
-**Restrictions and limits**
-
-To access the Geocoding API, you'll need an access token. Rate limits are enforced per account and vary by plan as detailed below:
-
-| Account level | Rate limit |
+| 账户等级 | 速率限制 |
 | ------------- | ---------- |
-| Pay-as-you-go       | 600 requests per minute |
-| Commercial       | 600 requests per minute |
-| Enterprise    | 2,400 requests per minute |
+| 现购现付       | 每分钟600次请求 |
+| 商业性         | 每分钟600次请求|
+| 企业性质       | 每分钟2400次请求 |
 
-Exceeding the limits above will result in an `HTTP 429` response. For information on rate limit headers, see [Rate limits](#rate-limits).
+超过上述限制将导致出现“HTTP 429”。 有关速率限制的标题信息，请参阅[Rate limits](#rate-limits).
 
-Batch geocoding is only available [with an Enterprise plan](https://www.mapbox.com/enterprise/).
-On all other plan levels, one geocode is permitted per request.
+批处理地理编码仅适应于[with an Enterprise plan](https://www.mapbox.com/enterprise/)。
+在其它方案等级中，每次请求只允许一个地理代码。
 
-The results from geocoding with the `mapbox.places` mode [must
-  be displayed on a Mapbox map and cannot be stored permanently](https://www.mapbox.com/tos/#%5BYmouYmoq%5D). The `mapbox.places-permanent` mode, available [with an Enterprise plan](https://www.mapbox.com/enterprise/),
-  does not have these licensing restrictions.
+使用`mapbox.places`模式进行地理编码的结果[必须显示在Mapbox地图上，不能永久存储] (https://www.mapbox.com/tos/#%5BYmouYmoq%5D)。 [mapbox.places-permanent`模式，在[with an Enterprise plan]中可用（https://www.mapbox.com/enterprise/），没有这些许可限制。
 
 The [Mapbox Geocoding API coverage map](https://www.mapbox.com/geocoding/#coverage) lists the types of geocoding results supported in each area of the world.
 
