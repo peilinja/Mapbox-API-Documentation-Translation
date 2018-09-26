@@ -16,16 +16,15 @@ Swift和Objective-C对地理编码的支持由[MapboxGeocoder.swift]（https://g
 | 商业性         | 每分钟600次请求|
 | 企业性质       | 每分钟2400次请求 |
 
-超过上述限制将导致出现“HTTP 429”。 有关速率限制的标题信息，请参阅[Rate limits](#rate-limits).
+超过上述限制将导致产生“HTTP 429”。 有关速率限制的标题信息，请参阅[Rate limits](#rate-limits).
 
 批处理地理编码仅适应于[with an Enterprise plan](https://www.mapbox.com/enterprise/)。
 在其它方案等级中，每次请求只允许一个地理代码。
 
 使用`mapbox.places`模式进行地理编码的结果[必须显示在Mapbox地图上，不能永久存储] (https://www.mapbox.com/tos/#%5BYmouYmoq%5D)。 [mapbox.places-permanent`模式，在[with an Enterprise plan]中可用（https://www.mapbox.com/enterprise/），没有这些许可限制。
 
-The [Mapbox Geocoding API coverage map](https://www.mapbox.com/geocoding/#coverage) lists the types of geocoding results supported in each area of the world.
-
-Queries are limited to either a total of 20 words and numbers separated by spacing and punctuation _or_ 256 characters.
+[Mapbox地理编码API覆盖地图]（(https://www.mapbox.com/geocoding/#coverage)）列出了世界各个地区支持的地理编码结果类型。
+查询仅限于20个单词以及由间距和标点符号分隔的数字_或者256个字符。
 
 If you use the optional bounding box parameter to filter results, note that the bounding box cannot cross the 180th meridian.
 
