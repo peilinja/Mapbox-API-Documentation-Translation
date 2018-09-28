@@ -80,19 +80,14 @@ Query 参数 | 描述
 `country` <br /> (optional) |将结果限制在一个或多个国家。选项是[ISO 3166 alpha 2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)国家/地区代码以逗号分隔。
 `proximity`<br /> (optional) | 根据提供的位置偏倚本地结果。 选项是 `longitude,latitude` 坐标.
 `types`<br /> (optional) | 通过一个或多个特征类型过滤结果。选项是 `country`, `region`, `postcode`, `district`, `place`, `locality`, `neighborhood`, `address`, `poi`, and `poi.landmark`.值得注意`poi.landmark`返回的是`poi`返回结果的子集。 多个选项可以用逗号分隔。
-`autocomplete`<br /> (optional) | 只转发地理编码。返回自动完成结果或不返回。选项是`true` 或者 `false`，默认值是为 `true`.
-`bbox`<br /> (optional) | _Forward geocoding only._ Limit results to a bounding box. Options are in the format `minX,minY,maxX,maxY`.
-`limit`<br /> (optional) | Limit the number of results returned. The default is `5` for forward geocoding and `1` for reverse geocoding.
-`language` <br /> (optional) | Specify the language to use for response text and, for forward geocoding, query result weighting. Options are [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) comprised of a mandatory [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and optionally one or more IETF subtags for country or script. More than one value can also be specified, separated by commas.
+`autocomplete`<br /> (optional) | 只正向地理编码。返回自动完成结果或不返回。选项是`true` 或者 `false`，默认值是为 `true`.
+`bbox`<br /> (optional) | _仅正向地理编码._将结果限制为边界框。 选项采用格式 `minX,minY,maxX,maxY`.
+`limit`<br /> (optional) | 限制返回的结果数。 前向地理编码的默认值为“5”，反向地理编码的默认值为“1”。
+`language` <br /> (optional) | 指定用于响应文本的语言，以及用于正向地理编码、查询结果权重的语言。选项是 [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) 它由规定的 [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) 和可选的国家或脚本的一个或多个IETF子表组成。还可以指定一个以上的值，用逗号分隔。
 
-The `{proximity}` parameter biases search results within 5 miles of a specific
-location given in `{longitude},{latitude}` coordinates. Results will not be
-filtered by location or ordered by distance, but location will be considered
-along with textual relevance and other criteria when scoring and sorting
-results.
+{proximity}参数会在{longitude}，{latitude}坐标中给出的特定位置5英里范围内偏差搜索结果。结果不按位置过滤或按距离排序，但在评分和排序结果时，位置会连同文本相关性和其他标准一起考虑。
 
-The `{autocomplete}` parameter controls whether autocomplete results
-are included. Autocomplete results can partially match the query. For example,
+`{autocomplete}`参数控制是否自动完成结果包含在内。自动填充结果可以通过部分匹配查询。例如，
 searching for `washingto` could include `washington` even though only
 the prefix matches. Autocomplete is useful for offering fast, type-ahead
 results in user interfaces. If your queries represent complete addresses or
