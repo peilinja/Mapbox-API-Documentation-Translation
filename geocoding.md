@@ -23,10 +23,10 @@ Swift和Objective-C对地理编码的支持由[MapboxGeocoder.swift]（https://g
 
 使用`mapbox.places`模式进行地理编码的结果[必须显示在Mapbox地图上，不能永久存储] (https://www.mapbox.com/tos/#%5BYmouYmoq%5D)。 [mapbox.places-permanent`模式，在[with an Enterprise plan]中可用（https://www.mapbox.com/enterprise/），没有这些许可限制。
 
-[Mapbox地理编码API覆盖地图]（(https://www.mapbox.com/geocoding/#coverage)）列出了世界各个地区支持的地理编码结果类型。
+[Mapbox地理编码API覆盖地图](https://www.mapbox.com/geocoding/#coverage) 列出了世界各个地区支持的地理编码结果类型。
 查询仅限于20个单词以及由间距和标点符号分隔的数字_或者256个字符。
 
-If you use the optional bounding box parameter to filter results, note that the bounding box cannot cross the 180th meridian.
+如果使用可选的边界框参数来过滤结果，请注意边界框不能越过第180度经线。
 
 ```objc
 @import MapboxGeocoder;
@@ -63,26 +63,24 @@ const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: '{your_access_token}' });
 ```
 
-### Request format
-
-Both geocoding and reverse geocoding requests have the same basic format. Since
-the `{query}` parameter can contain any value, it should be URL-encoded UTF-8.
+### 请求格式
+地理编码和反向地理编码请求都具有相同的基本格式。 由于`{query}`参数可以包含任何值，因此它应该是URL编码的UTF-8。
 
 ```endpoint
 GET /geocoding/v5/{mode}/{query}.json
 ```
 
-URL Parameter | Description
+URL 参数 | 描述
 --- | ---
-`query` | A location. This will be a place name for forward geocoding or a coordinate pair (longitude, latitude) for reverse geocoding.
-`mode` | Either `mapbox.places` for ephemeral geocoding, or `mapbox.places-permanent` for storing results and batch geocoding.
+`query` | 一个位置。 这将是正向地理编码的地名或反向地理编码的一对坐标（经度，纬度）。
+`mode` | 用于短暂地理编码的`mapbox.places`或用于存储结果和批量地理编码的`mapbox.places-permanent`。
 
-Query Parameter | Description
+Query 参数 | 描述
 ----------|------------
-`country` <br /> (optional) | Limit results to one or more countries. Options are [ISO 3166 alpha 2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country codes separated by commas.
-`proximity`<br /> (optional) | Bias local results based on a provided location. Options are `longitude,latitude` coordinates.
-`types`<br /> (optional) | Filter results by one or more feature types. Options are `country`, `region`, `postcode`, `district`, `place`, `locality`, `neighborhood`, `address`, `poi`, and `poi.landmark`. Note that `poi.landmark` returns a subset of the results returned by `poi`. Multiple options can be comma-separated.
-`autocomplete`<br /> (optional) | _Forward geocoding only._ Return autocomplete results or not. Options are `true` or `false` and the default is `true`.
+`country` <br /> (optional) |将结果限制在一个或多个国家。选项是[ISO 3166 alpha 2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)国家/地区代码以逗号分隔。
+`proximity`<br /> (optional) | 根据提供的位置偏倚本地结果。 选项是 `longitude,latitude` 坐标.
+`types`<br /> (optional) | 通过一个或多个特征类型过滤结果。选项是 `country`, `region`, `postcode`, `district`, `place`, `locality`, `neighborhood`, `address`, `poi`, and `poi.landmark`.值得注意`poi.landmark`返回的是`poi`返回结果的子集。 多个选项可以用逗号分隔。
+`autocomplete`<br /> (optional) | 只转发地理编码。返回自动完成结果或不返回。选项是`true` 或者 `false`，默认值是为 `true`.
 `bbox`<br /> (optional) | _Forward geocoding only._ Limit results to a bounding box. Options are in the format `minX,minY,maxX,maxY`.
 `limit`<br /> (optional) | Limit the number of results returned. The default is `5` for forward geocoding and `1` for reverse geocoding.
 `language` <br /> (optional) | Specify the language to use for response text and, for forward geocoding, query result weighting. Options are [IETF language tags](https://en.wikipedia.org/wiki/IETF_language_tag) comprised of a mandatory [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and optionally one or more IETF subtags for country or script. More than one value can also be specified, separated by commas.
